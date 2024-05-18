@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    .but{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="but">
+    <form action="{{ url_for('upload_page') }}">
+<button class="btn btn-danger"> Back To Upload Page</button>
+</form>
+<form action="{{ url_for('subscription_page') }}">
+<button class="btn btn-success"> Click here To display Subscription Prices for Each record</button>
+</form>
+</div>
+<table class="table">
+    <tr>
+         <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">CreditScore</th>
+      <th scope="col">CreditLines</th>
+        <th scope="col">MaskedPhoneNumber</th>
+        <th scope="col">SubscriptionPrice</th>
+
+    </tr>
+{% for row in data %}
+                <tr>
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+</table>
+<div style="display: flex; flex-direction:row; justify-content: center;align-items: center ">
+<form action="{{ url_for('previous') }}">
+    <button class="btn btn-primary">  << Previous</button>
+</form>
+
+<form action="{{ url_for('next') }}">
+
+    <button class="btn btn-primary disable">Next>></button>
+
+
+
+</form>
+</div>
+</body>
+</html>
